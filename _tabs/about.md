@@ -18,5 +18,5 @@ A premier collective of developers, technical writers, and technology specialist
 
 You can find me here:
 - [GitHub](https://github.com/jeffkessie)
-- [Twitter](https://x.com/jeffkessie_)
+<!-- - [Twitter](https://x.com/jeffkessie_) -->
 - [LinkedIn](https://www.linkedin.com/in/jkessie/)
