@@ -1,9 +1,12 @@
 ---
 layout: page
-title: Inquiries
+title: Connect With Us!
 icon: fas fa-envelope
 order: 5
 ---
+
+<!-- Load canvas-confetti library for the celebration animation -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <div class="card border-0 shadow-sm rounded-3 p-4 p-md-5 bg-glass">
   <div class="card-body p-0">
@@ -15,6 +18,10 @@ order: 5
       Create a form, copy the Form ID, and replace 'YOUR_FORMSPREE_ID' in the action URL below.
     -->
     <form id="inquiryForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="needs-validation" novalidate>
+      
+      <!-- Honeypot field (invisible to users, catches spam bots) -->
+      <input type="text" name="_gotcha" style="display:none">
+
       <div class="row g-3">
         <!-- Name -->
         <div class="col-md-6">
@@ -102,6 +109,7 @@ order: 5
       statusAlert.classList.add("d-none");
       statusAlert.classList.remove("alert-success", "alert-danger");
 
+      // Form validation
       if (!form.checkValidity()) {
         form.classList.add("needs-validation");
         form.classList.add("was-validated");
@@ -110,7 +118,9 @@ order: 5
 
       // If Formspree ID hasn't been set, guide the user
       if (form.getAttribute("action").includes("YOUR_FORMSPREE_ID")) {
-        showAlert("danger", "Form submission is in placeholder mode. Please set up your Formspree Form ID in the inquiries.md file to enable email delivery.", "fas fa-exclamation-triangle");
+        // Trigger temporary debug confetti so you can see it rain even in placeholder mode!
+        triggerConfettiRain();
+        showAlert("danger", "Form is in demo mode (Confetti works!). Please set up your Formspree Form ID in the inquiries.md file to enable actual email delivery.", "fas fa-info-circle");
         return;
       }
 
@@ -130,6 +140,8 @@ order: 5
       })
       .then(response => {
         if (response.ok) {
+          // Trigger confetti rain celebration!
+          triggerConfettiRain();
           showAlert("success", "Thank you! Your message has been sent successfully. We will get back to you shortly.", "fas fa-check-circle");
           form.reset();
           form.classList.remove("was-validated");
@@ -160,6 +172,30 @@ order: 5
       alertIcon.innerHTML = `<i class="${iconClass}"></i>`;
       alertMessage.textContent = message;
       statusAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function triggerConfettiRain() {
+      // Multiple bursts of confetti for a raining effect
+      const duration = 2 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        // Confetti rains down from the top left and top right
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+      }, 250);
     }
   });
 </script>
