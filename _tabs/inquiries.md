@@ -8,88 +8,303 @@ order: 5
 <!-- Load canvas-confetti library for the celebration animation -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-<div class="card border-0 shadow-sm rounded-3 p-4 p-md-5 bg-glass">
-  <div class="card-body p-0">
-    <h2 class="h4 mb-3 text-primary fw-bold">Send an Inquiry</h2>
-    <p class="text-muted mb-4">Have a project in mind, a question, or a business proposal? Fill out the form below, and we will get back to you as soon as possible.</p>
+<div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 bg-glass mx-auto">
 
-    <!--
-      To receive form submissions in your email, sign up for a free account at https://formspree.io/
-      Create a form, copy the Form ID, and replace 'YOUR_FORMSPREE_ID' in the action URL below.
-    -->
-    <form id="inquiryForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="needs-validation" novalidate>
-      
-      <!-- Honeypot field (invisible to users, catches spam bots) -->
+  <div class="card-body p-0">
+
+    <div class="text-center mb-5">
+      <h2 class="h3 text-primary fw-bold mb-3">
+        Send an Inquiry
+      </h2>
+
+      <p class="text-muted mb-0">
+        Have a project in mind, a question, or a business proposal?
+        Fill out the form below and we will get back to you as soon as possible.
+      </p>
+    </div>
+
+
+    <form 
+      id="inquiryForm"
+      action="https://formspree.io/f/mgvojjoz"
+      method="POST"
+      class="needs-validation"
+      novalidate>
+
+
+      <!-- Honeypot spam protection -->
       <input type="text" name="_gotcha" style="display:none">
 
-      <div class="row g-3">
+
+      <div class="d-flex flex-column gap-4">
+
+
         <!-- Name -->
-        <div class="col-md-6">
-          <label for="name" class="form-label text-muted small fw-semibold">Full Name</label>
-          <input type="text" class="form-control rounded-2 border-muted" id="name" name="name" placeholder="John Doe" required>
-          <div class="invalid-feedback">Please enter your name.</div>
+        <div>
+          <label 
+            for="name" 
+            class="form-label text-muted small fw-semibold">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            class="form-control form-control-lg rounded-3"
+            id="name"
+            name="name"
+            placeholder="Bobby Kasim"
+            required>
+
+          <div class="invalid-feedback">
+            Please enter your name.
+          </div>
         </div>
+
+
 
         <!-- Email -->
-        <div class="col-md-6">
-          <label for="email" class="form-label text-muted small fw-semibold">Email Address</label>
-          <input type="email" class="form-control rounded-2 border-muted" id="email" name="email" placeholder="john@example.com" required>
-          <div class="invalid-feedback">Please enter a valid email address.</div>
+        <div>
+          <label 
+            for="email" 
+            class="form-label text-muted small fw-semibold">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            class="form-control form-control-lg rounded-3"
+            id="email"
+            name="email"
+            placeholder="Bobby.Kasim@example.com"
+            required>
+
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
         </div>
+
+
 
         <!-- Subject -->
-        <div class="col-12">
-          <label for="subject" class="form-label text-muted small fw-semibold">Subject</label>
-          <input type="text" class="form-control rounded-2 border-muted" id="subject" name="subject" placeholder="Project Inquiry / Business Proposal" required>
-          <div class="invalid-feedback">Please specify a subject.</div>
+        <div>
+          <label 
+            for="subject" 
+            class="form-label text-muted small fw-semibold">
+            Subject
+          </label>
+
+          <input
+            type="text"
+            class="form-control form-control-lg rounded-3"
+            id="subject"
+            name="subject"
+            placeholder="Technology Advisory Request / Professional Services / Enterprise Technology Consultation "
+            required>
+
+          <div class="invalid-feedback">
+            Please specify a subject.
+          </div>
         </div>
+
+
 
         <!-- Message -->
-        <div class="col-12">
-          <label for="message" class="form-label text-muted small fw-semibold">Message</label>
-          <textarea class="form-control rounded-2 border-muted" id="message" name="message" rows="6" placeholder="Tell us about your project or inquiry details..." required></textarea>
-          <div class="invalid-feedback">Please write a message.</div>
+        <div>
+          <label 
+            for="message" 
+            class="form-label text-muted small fw-semibold">
+            Message
+          </label>
+
+          <textarea
+            class="form-control rounded-3"
+            id="message"
+            name="message"
+            rows="7"
+            placeholder="Tell us about your infrastructure, security concerns, or areas where you need assistance..."
+            required></textarea>
+
+          <div class="invalid-feedback">
+            Please write a message.
+          </div>
         </div>
+
+
 
         <!-- Submit Button -->
-        <div class="col-12 mt-4">
-          <button type="submit" id="submitBtn" class="btn btn-primary px-4 py-2 rounded-2 fw-semibold w-100 w-md-auto transition-all">
-            <span id="btnText">Send Message</span>
-            <span id="btnSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+        <div class="pt-2">
+
+          <button 
+            type="submit"
+            id="submitBtn"
+            class="btn btn-primary btn-lg rounded-3 fw-semibold w-100 transition-all">
+
+            <span id="btnText">
+              <i class="fas fa-paper-plane me-2"></i>
+              Send Message
+            </span>
+
+            <span 
+              id="btnSpinner"
+              class="spinner-border spinner-border-sm ms-2 d-none"
+              role="status"
+              aria-hidden="true">
+            </span>
+
           </button>
+
         </div>
+
+
       </div>
+
+
     </form>
 
+
+
     <!-- Success & Error Alert Messages -->
-    <div id="statusAlert" class="mt-4 alert d-none fade show rounded-2" role="alert">
+    <div 
+      id="statusAlert"
+      class="mt-4 alert d-none fade show rounded-3"
+      role="alert">
+
       <div class="d-flex align-items-center">
+
         <span id="alertIcon" class="me-2"></span>
+
         <span id="alertMessage"></span>
+
       </div>
+
     </div>
+
+
   </div>
+
 </div>
 
 <style>
-  /* Modern CSS enhancements */
-  .bg-glass {
-    background: var(--card-bg, rgba(255, 255, 255, 0.9));
-    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.05));
-    transition: box-shadow 0.3s ease;
+
+.bg-glass {
+
+  max-width: 850px;
+  margin: 0 auto;
+
+  background: var(--card-bg, rgba(255,255,255,0.9));
+
+  border:
+    1px solid var(--border-color, rgba(0,0,0,0.05));
+
+  backdrop-filter:
+    blur(12px);
+
+  transition:
+    all .3s ease;
+
+}
+
+
+
+.bg-glass:hover {
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.12);
+
+}
+
+
+
+/* Vertical input styling */
+
+.form-control {
+
+  width:100%;
+
+  padding:
+    0.95rem 1rem;
+
+  border-radius:
+    14px;
+
+  font-size:
+    1rem;
+
+}
+
+
+
+.form-control:focus {
+
+  border-color:
+    var(--primary-color,#0d6efd);
+
+  box-shadow:
+    0 0 0 .25rem rgba(13,110,253,.15);
+
+}
+
+
+
+/* Button animation */
+
+.transition-all {
+
+  transition:
+    all .25s ease-in-out;
+
+}
+
+
+
+.transition-all:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(13,110,253,.25);
+
+}
+
+
+
+/* Alert animation */
+
+.alert {
+
+  animation:
+    fadeIn .3s ease;
+
+}
+
+
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity:0;
+    transform:translateY(-10px);
+
   }
-  .form-control:focus {
-    border-color: var(--primary-color, #0d6efd);
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+
+  to {
+
+    opacity:1;
+    transform:translateY(0);
+
   }
-  .transition-all {
-    transition: all 0.2s ease-in-out;
-  }
-  .transition-all:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+
+}
+
+
 </style>
+
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
