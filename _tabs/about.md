@@ -59,7 +59,7 @@ A premier collective of developers, technical writers, and technology specialist
 ## Connect With Me
 
 You can find me here:
-- [GitHub](https://github.com/jeffkessie)
+<!-- - [GitHub](https://github.com/jeffkessie) -->
 - [LinkedIn](https://www.linkedin.com/in/jkessie/)
 
 <style>
