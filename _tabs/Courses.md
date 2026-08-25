@@ -1,32 +1,32 @@
 ---
 layout: page
-title: Professional Training
+title: Career Advancement Training
 icon: fas fa-graduation-cap
 order: 7
 courses:
   - id: 0
     title: "AWS Cloud Practitioner"
-    subtitle: "AWS Certified Cloud Practitioner (CLF-C02)"
+    subtitle: "AWS Certified Cloud Practitioner Course"
     image: "/assets/img/favicons/aws.png"
-    price: "$399"
+    price: "$199"
     duration: "4 Weeks (Self-Paced / Live Cohort)"
     gumroad_url: "https://cloudcommercialholdings.gumroad.com/l/aws-cloud-practitioner"
     short_desc: "Build foundational cloud skills with Amazon Web Services."
     learn: "This program provides a comprehensive introduction to cloud computing concepts, core Amazon Web Services (AWS) infrastructure, security models, database systems, and pricing strategies. You will master AWS billing practices, identity management, and the architectural principles that govern secure, resilient cloud setups."
     outcomes: "By completing this course, you will be prepared to pass the official AWS Certified Cloud Practitioner exam, navigate the AWS Management Console with confidence, design basic secure cloud infrastructures, and understand cloud economics and shared responsibility frameworks."
   - id: 1
-    title: "Microsoft Azure Fundamentals"
-    subtitle: "Microsoft Certified: Azure Fundamentals (AZ-900)"
+    title: "Microsoft Azure Course"
+    subtitle: "Microsoft Certified: Azure Fundamentals (AZ-900), (AZ-204), (AZ-104)"
     image: "/assets/img/favicons/azure.png"
-    price: "$499"
+    price: "$299"
     duration: "4 Weeks (Self-Paced / Live Cohort)"
     gumroad_url: "https://cloudcommercialholdings.gumroad.com/l/azure-fundamentals"
     short_desc: "Learn Microsoft's cloud platform, networking, identity, and core services."
     learn: "Explore the core components of Microsoft Azure, including virtual networks, virtual machines, cloud storage services, and active directory identity frameworks. This course emphasizes configuring network security groups (NSGs), understanding role-based access controls (RBAC), and monitoring subscription security baselines."
     outcomes: "You will achieve readiness for the AZ-900 exam and learn to audit Azure assets, configure secure network parameters, manage identities using Microsoft Entra ID (formerly Azure Active Directory), and optimize Azure services for compliance and billing efficiency."
   - id: 2
-    title: "CompTIA CASP+"
-    subtitle: "CompTIA Advanced Security Practitioner (CAS-004)"
+    title: "Cloud, Security, & Artifical Intelligence, CompTIA CASP+"
+    subtitle: "CompTIA Advanced Security Practitioner (CAS-004), Security+ (701) PenTest+ and more!"
     image: "/assets/img/favicons/casp.png"
     price: "$1,499"
     duration: "8 Weeks (Live Instruction & Lab Sandbox)"
@@ -34,6 +34,16 @@ courses:
     short_desc: "Advanced enterprise cybersecurity, architecture, governance, and operations."
     learn: "Master advanced security engineering, research, development, and risk management techniques for complex enterprise networks. This elite program covers threat modeling, cryptographic protocols, secure integration of SaaS/PaaS/IaaS nodes, secure software development lifecycles, and incident response automation."
     outcomes: "You will gain the skills required to design, secure, and run advanced enterprise network infrastructures, formulate security governance policies, perform threat hunting using SIEM tools, and successfully pass the high-stakes CompTIA CASP+ certification exam."
+  - id: 3
+    title: "ATS Resume Tailoring & Interview Mastery"
+    subtitle: "ATS Optimization + 5 Dedicated 1-on-1 Interview Coaching Sessions"
+    image: "/assets/img/favicons/resume.jpg"
+    price: "$499"
+    duration: "2 Weeks (5 Live 1-on-1 Coaching Sessions)"
+    gumroad_url: "https://cloudcommercialholdings.gumroad.com/l/resume-interview-prep"
+    short_desc: "Tailor an ATS-beating resume that leverages your experience and master interviews with 5 live coaching sessions."
+    learn: "Transform your career profile with an ATS (Applicant Tracking System) optimized resume designed to bypass automated scanner filters and get noticed by hiring managers. Learn strategic keyword integration, high-impact quantifiable bullet formulation, and career positioning tailored to enterprise cloud, cybersecurity, and tech roles."
+    outcomes: "Includes a completely rewritten ATS-beating resume, LinkedIn profile optimization, and 5 dedicated 1-on-1 live interview preparation sessions covering technical deep dives, behavioral STAR methodology, mock interviews, and salary offer negotiation."
 ---
 
 <!-- Gumroad overlay checkout script -->
@@ -227,25 +237,42 @@ courses:
               <span class="text-muted small d-block">Price</span>
               <span class="text-sky fw-bold fs-5">${course.price}</span>
             </div>
+        <!-- Maintenance Alert Container -->
+        <div id="maintenanceNotice" class="alert alert-warning border border-warning border-opacity-50 fade show mt-3 rounded-3 text-start shadow-sm d-none" role="alert">
+          <div class="d-flex align-items-center mb-1 fw-bold text-warning">
+            <i class="fas fa-tools me-2"></i>Checkout System Under Maintenance
           </div>
+          <p class="small mb-2.5 text-light-slate">
+            Online self-service checkout for <strong>${course.title}</strong> is currently being updated. If you have questions or would like to reserve your spot directly, please send us an email.
+          </p>
+          <a href="mailto:jeffkessie450@gmail.com?subject=Course Enrollment Inquiry: ${encodeURIComponent(course.title)}" class="btn btn-sm btn-warning text-dark fw-semibold rounded-pill px-3 shadow-sm">
+            <i class="fas fa-paper-plane me-1.5"></i>Contact jeffkessie450@gmail.com
+          </a>
         </div>
 
         <div class="d-flex align-items-center justify-content-between gap-2 mt-4 pt-3 border-top border-secondary border-opacity-25">
           <button class="btn btn-outline-secondary btn-sm px-4 rounded-2" id="modalCloseActionBtn">← Back</button>
-          <a
-            href="${course.gumroad_url}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-enroll btn-lg px-5 rounded-pill"
-            data-gumroad-single-product="true"
+          <button
+            id="enrollBtn"
+            class="btn btn-enroll btn-lg px-4 rounded-pill"
           >
             <i class="fas fa-shopping-cart me-2"></i>Enroll Now — ${course.price}
-          </a>
+          </button>
         </div>
       `;
 
       modal.classList.remove("hidden");
       document.getElementById("modalCloseActionBtn").addEventListener("click", closeCourseDetails);
+
+      const enrollBtn = document.getElementById("enrollBtn");
+      const maintenanceNotice = document.getElementById("maintenanceNotice");
+      if (enrollBtn && maintenanceNotice) {
+        enrollBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          maintenanceNotice.classList.remove("d-none");
+          maintenanceNotice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      }
     }
 
     function closeCourseDetails() {

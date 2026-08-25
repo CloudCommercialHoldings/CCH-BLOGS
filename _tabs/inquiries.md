@@ -1,416 +1,214 @@
 ---
 layout: page
-title: Connect With Us!
-icon: fas fa-envelope
+title: Inquiries
+icon: fas fa-calendar-alt
 order: 5
 ---
 
-<!-- Load canvas-confetti library for the celebration animation -->
+<!-- Load canvas-confetti library for celebration animation -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-<div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 bg-glass mx-auto">
-
-  <div class="card-body p-0">
-
-    <div class="text-center mb-5">
-      <h2 class="h3 text-primary fw-bold mb-3">
-        Send an Inquiry
-      </h2>
-
-      <p class="text-muted mb-0">
-        Have a project in mind, a question, or a business proposal?
-        Fill out the form below and we will get back to you as soon as possible.
-      </p>
-    </div>
-
-
-    <form 
-      id="inquiryForm"
-      action="https://formspree.io/f/mgvojjoz"
-      method="POST"
-      class="needs-validation"
-      novalidate>
-
-
-      <!-- Honeypot spam protection -->
-      <input type="text" name="_gotcha" style="display:none">
-
-
-      <div class="d-flex flex-column gap-4">
-
-
-        <!-- Name -->
-        <div>
-          <label 
-            for="name" 
-            class="form-label text-muted small fw-semibold">
-            Full Name
-          </label>
-
-          <input
-            type="text"
-            class="form-control form-control-lg rounded-3"
-            id="name"
-            name="name"
-            placeholder="Bobby Kasim"
-            required>
-
-          <div class="invalid-feedback">
-            Please enter your name.
-          </div>
-        </div>
-
-
-
-        <!-- Email -->
-        <div>
-          <label 
-            for="email" 
-            class="form-label text-muted small fw-semibold">
-            Email Address
-          </label>
-
-          <input
-            type="email"
-            class="form-control form-control-lg rounded-3"
-            id="email"
-            name="email"
-            placeholder="Bobby.Kasim@example.com"
-            required>
-
-          <div class="invalid-feedback">
-            Please enter a valid email address.
-          </div>
-        </div>
-
-
-
-        <!-- Subject -->
-        <div>
-          <label 
-            for="subject" 
-            class="form-label text-muted small fw-semibold">
-            Subject
-          </label>
-
-          <input
-            type="text"
-            class="form-control form-control-lg rounded-3"
-            id="subject"
-            name="subject"
-            placeholder="Technology Advisory Request / Professional Services / Enterprise Technology Consultation "
-            required>
-
-          <div class="invalid-feedback">
-            Please specify a subject.
-          </div>
-        </div>
-
-
-
-        <!-- Message -->
-        <div>
-          <label 
-            for="message" 
-            class="form-label text-muted small fw-semibold">
-            Message
-          </label>
-
-          <textarea
-            class="form-control rounded-3"
-            id="message"
-            name="message"
-            rows="7"
-            placeholder="Tell us about your infrastructure, security concerns, or areas where you need assistance..."
-            required></textarea>
-
-          <div class="invalid-feedback">
-            Please write a message.
-          </div>
-        </div>
-
-
-
-        <!-- Submit Button -->
-        <div class="pt-2">
-
-          <button 
-            type="submit"
-            id="submitBtn"
-            class="btn btn-primary btn-lg rounded-3 fw-semibold w-100 transition-all">
-
-            <span id="btnText">
-              <i class="fas fa-paper-plane me-2"></i>
-              Send Message
-            </span>
-
-            <span 
-              id="btnSpinner"
-              class="spinner-border spinner-border-sm ms-2 d-none"
-              role="status"
-              aria-hidden="true">
-            </span>
-
-          </button>
-
-        </div>
-
-
-      </div>
-
-
-    </form>
-
-
-
-    <!-- Success & Error Alert Messages -->
-    <div 
-      id="statusAlert"
-      class="mt-4 alert d-none fade show rounded-3"
-      role="alert">
-
-      <div class="d-flex align-items-center">
-
-        <span id="alertIcon" class="me-2"></span>
-
-        <span id="alertMessage"></span>
-
-      </div>
-
-    </div>
-
-
+<div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 bg-glass mx-auto text-center" style="max-width: 750px;">
+  
+  <div class="mb-4">
+    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill small fw-semibold mb-2">
+      <i class="fas fa-calendar-check me-1.5"></i> Schedule via QR Code
+    </span>
+    <h1 class="h2 fw-bold text-white mb-2">Scan to Schedule a Meeting</h1>
+    <p class="text-muted small max-w-600 mx-auto">
+      Scan the QR code below with your smartphone camera to a 1-on-1 consultation or project discovery call.
+    </p>
   </div>
+
+  <!-- Category Selector Pills -->
+  <div class="mb-4">
+    <label class="form-label text-muted small fw-semibold d-block mb-2.5">
+      Select Meeting Topic (Updates QR Code Live):
+    </label>
+    <div class="d-flex flex-wrap justify-content-center gap-2" id="topicSelector">
+      <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 active" data-topic="Cloud Architecture Consultation" data-slug="cloud-architecture">
+        ☁️ Cloud Architecture Assesment
+      </button>
+      <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2" data-topic="Cybersecurity Audit Review" data-slug="cybersecurity-audit">
+        🛡️ Cybersecurity NIST, FISMA, HIPPA, COBIT
+      </button>
+      <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2" data-topic="Course & Resume Coaching" data-slug="resume-coaching">
+        🎓 Course & Coaching
+      </button>
+      <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2" data-topic="Business Proposal & Discovery" data-slug="discovery-call">
+        💼 Business Electronic Discovery
+      </button>
+    </div>
+  </div>
+
+  <!-- Main QR Code Display Frame -->
+  <div class="qr-container position-relative my-4 p-4 rounded-4 mx-auto d-inline-block bg-dark-subtle border border-secondary border-opacity-25 shadow-lg">
+    <!-- Pulse badge -->
+    <div class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success px-3 py-1 text-white shadow-sm small">
+      <i class="fas fa-calendar-alt me-1 fa-sm"></i> Calendly Ready
+    </div>
+
+    <!-- Frame corner markers for scanner aesthetic -->
+    <div class="scanner-corner corner-tl"></div>
+    <div class="scanner-corner corner-tr"></div>
+    <div class="scanner-corner corner-bl"></div>
+    <div class="scanner-corner corner-br"></div>
+
+    <!-- QR Code Image -->
+    <div class="qr-image-wrapper p-3 bg-white rounded-3 shadow-inner d-inline-block">
+      <img id="qrCodeImg" src="" alt="Scan Calendly QR Code" class="img-fluid rounded-2" style="width: 220px; height: 220px;">
+    </div>
+
+    <div class="mt-3">
+      <span class="text-sky font-monospace small" id="qrTopicLabel">
+        <i class="fas fa-tag me-1"></i>Topic: Cloud Architecture Consultation
+      </span>
+    </div>
+  </div>
+
+  <!-- Mobile & Desktop Fallback Direct Action Buttons -->
+  <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mt-3">
+    <a id="directCalendlyBtn" href="https://calendly.com/jeffkessie450/30min/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg rounded-pill px-4 fw-semibold shadow-sm w-100 w-sm-auto">
+      <i class="fas fa-external-link-alt me-2"></i>Book Directly on Calendly
+    </a>
+    
+    <button id="copyCalendlyBtn" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-semibold w-100 w-sm-auto">
+      <i class="far fa-copy me-2"></i>Copy Scheduling Link
+    </button>
+  </div>
+
+  <!-- Toast/Status Alert -->
+  <div id="statusAlert" class="alert alert-success d-none mt-4 rounded-3 text-start mb-0 fade show" role="alert">
+    <i class="fas fa-check-circle me-2"></i><span id="statusMessage">Calendly link copied to clipboard!</span>
+  </div>
+
+  <!-- Direct Link Disclosure
+  <div class="mt-4 pt-3 border-top border-secondary border-opacity-25 text-center text-muted small">
+    Direct Calendly URL: <a id="calendlyTextLink" href="https://calendly.com/jeffkessie450/30min/30min" target="_blank" class="text-sky text-decoration-none font-monospace">https://calendly.com/jeffkessie450/30min/30min</a>
+  </div> -->
 
 </div>
 
 <style>
-
-.bg-glass {
-
-  max-width: 850px;
-  margin: 0 auto;
-
-  background: var(--card-bg, rgba(255,255,255,0.9));
-
-  border:
-    1px solid var(--border-color, rgba(0,0,0,0.05));
-
-  backdrop-filter:
-    blur(12px);
-
-  transition:
-    all .3s ease;
-
-}
-
-
-
-.bg-glass:hover {
-
-  transform:
-    translateY(-3px);
-
-  box-shadow:
-    0 20px 40px rgba(0,0,0,.12);
-
-}
-
-
-
-/* Vertical input styling */
-
-.form-control {
-
-  width:100%;
-
-  padding:
-    0.95rem 1rem;
-
-  border-radius:
-    14px;
-
-  font-size:
-    1rem;
-
-}
-
-
-
-.form-control:focus {
-
-  border-color:
-    var(--primary-color,#0d6efd);
-
-  box-shadow:
-    0 0 0 .25rem rgba(13,110,253,.15);
-
-}
-
-
-
-/* Button animation */
-
-.transition-all {
-
-  transition:
-    all .25s ease-in-out;
-
-}
-
-
-
-.transition-all:hover {
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 8px 18px rgba(13,110,253,.25);
-
-}
-
-
-
-/* Alert animation */
-
-.alert {
-
-  animation:
-    fadeIn .3s ease;
-
-}
-
-
-
-@keyframes fadeIn {
-
-  from {
-
-    opacity:0;
-    transform:translateY(-10px);
-
+  .bg-glass {
+    background: var(--card-bg, rgba(30, 41, 59, 0.95));
+    border: 1px solid var(--border-color, rgba(0, 120, 215, 0.2));
+    backdrop-filter: blur(12px);
   }
 
-  to {
-
-    opacity:1;
-    transform:translateY(0);
-
+  .qr-container {
+    background: rgba(15, 23, 42, 0.85) !important;
+    max-width: 340px;
+    width: 100%;
   }
 
-}
+  .qr-image-wrapper {
+    transition: transform 0.3s ease;
+  }
 
+  .qr-container:hover .qr-image-wrapper {
+    transform: scale(1.03);
+  }
 
+  /* Scanner aesthetic corner markers */
+  .scanner-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: #0078D4;
+    border-style: solid;
+  }
+  .corner-tl { top: 10px; left: 10px; border-width: 3px 0 0 3px; border-top-left-radius: 6px; }
+  .corner-tr { top: 10px; right: 10px; border-width: 3px 3px 0 0; border-top-right-radius: 6px; }
+  .corner-bl { bottom: 10px; left: 10px; border-width: 0 0 3px 3px; border-bottom-left-radius: 6px; }
+  .corner-br { bottom: 10px; right: 10px; border-width: 0 3px 3px 0; border-bottom-right-radius: 6px; }
+
+  .text-sky {
+    color: rgb(125, 211, 252);
+  }
+
+  .max-w-600 {
+    max-width: 600px;
+  }
 </style>
 
-
-
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("inquiryForm");
-    const submitBtn = document.getElementById("submitBtn");
-    const btnText = document.getElementById("btnText");
-    const btnSpinner = document.getElementById("btnSpinner");
+  (function () {
+    const baseCalendlyUrl = "https://calendly.com/jeffkessie450/30min";
+    const qrImg = document.getElementById("qrCodeImg");
+    const topicLabel = document.getElementById("qrTopicLabel");
+    const directCalendlyBtn = document.getElementById("directCalendlyBtn");
+    const copyCalendlyBtn = document.getElementById("copyCalendlyBtn");
     const statusAlert = document.getElementById("statusAlert");
-    const alertIcon = document.getElementById("alertIcon");
-    const alertMessage = document.getElementById("alertMessage");
+    const statusMessage = document.getElementById("statusMessage");
+    const topicButtons = document.querySelectorAll("#topicSelector button");
+    const calendlyTextLink = document.getElementById("calendlyTextLink");
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (!qrImg || !directCalendlyBtn) return;
 
-      // Clear previous alerts
-      statusAlert.classList.add("d-none");
-      statusAlert.classList.remove("alert-success", "alert-danger");
+    let activeCalendlyUrl = baseCalendlyUrl;
 
-      // Form validation
-      if (!form.checkValidity()) {
-        form.classList.add("needs-validation");
-        form.classList.add("was-validated");
-        return;
+    function updateQRCode(topic, slug) {
+      // Build Calendly URL with topic query or specific event slug
+      activeCalendlyUrl = `${baseCalendlyUrl}?topic=${encodeURIComponent(slug)}`;
+      
+      // Generate clean QR code using QR server API pointing to Calendly URL
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=0f172a&data=${encodeURIComponent(activeCalendlyUrl)}`;
+      
+      qrImg.src = qrApiUrl;
+      topicLabel.innerHTML = `<i class="fas fa-tag me-1"></i>Topic: ${topic}`;
+      directCalendlyBtn.href = activeCalendlyUrl;
+      if (calendlyTextLink) {
+        calendlyTextLink.href = activeCalendlyUrl;
+        calendlyTextLink.textContent = activeCalendlyUrl;
       }
+    }
 
-      // If Formspree ID hasn't been set, guide the user
-      if (form.getAttribute("action").includes("YOUR_FORMSPREE_ID")) {
-        // Trigger temporary debug confetti so you can see it rain even in placeholder mode!
-        triggerConfettiRain();
-        showAlert("danger", "Form is in demo mode (Confetti works!). Please set up your Formspree Form ID in the inquiries.md file to enable actual email delivery.", "fas fa-info-circle");
-        return;
-      }
+    // Initialize default Calendly QR Code
+    updateQRCode("Cloud Architecture Consultation", "cloud-architecture");
 
-      // Start loading state
-      submitBtn.disabled = true;
-      btnSpinner.classList.remove("d-none");
-      btnText.textContent = "Sending...";
-
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          // Trigger confetti rain celebration!
-          triggerConfettiRain();
-          showAlert("success", "Thank you! Your message has been sent successfully. We will get back to you shortly.", "fas fa-check-circle");
-          form.reset();
-          form.classList.remove("was-validated");
-        } else {
-          response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
-              showAlert("danger", data["errors"].map(error => error.message).join(", "), "fas fa-times-circle");
-            } else {
-              showAlert("danger", "Oops! There was a problem submitting your form.", "fas fa-times-circle");
-            }
-          })
-        }
-      })
-      .catch(error => {
-        showAlert("danger", "Oops! There was a network connectivity issue. Please check your internet connection.", "fas fa-wifi");
-      })
-      .finally(() => {
-        // Reset loading state
-        submitBtn.disabled = false;
-        btnSpinner.classList.add("d-none");
-        btnText.textContent = "Send Message";
+    // Topic selector click events
+    topicButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        topicButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const topic = btn.getAttribute("data-topic");
+        const slug = btn.getAttribute("data-slug");
+        updateQRCode(topic, slug);
       });
     });
 
-    function showAlert(type, message, iconClass) {
+    // Copy Calendly link button event
+    copyCalendlyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(activeCalendlyUrl).then(() => {
+        showStatus(`Copied Calendly link to clipboard!`);
+        triggerConfetti();
+      }).catch(() => {
+        showStatus(`Calendly URL: ${activeCalendlyUrl}`);
+      });
+    });
+
+    // Direct Calendly booking click celebration
+    directCalendlyBtn.addEventListener("click", () => {
+      triggerConfetti();
+    });
+
+    function showStatus(msg) {
+      statusMessage.textContent = msg;
       statusAlert.classList.remove("d-none");
-      statusAlert.classList.add(type === "success" ? "alert-success" : "alert-danger");
-      alertIcon.innerHTML = `<i class="${iconClass}"></i>`;
-      alertMessage.textContent = message;
-      statusAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setTimeout(() => {
+        statusAlert.classList.add("d-none");
+      }, 4000);
     }
 
-    function triggerConfettiRain() {
-      // Multiple bursts of confetti for a raining effect
-      const duration = 2 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
       }
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-
-        const particleCount = 50 * (timeLeft / duration);
-        // Confetti rains down from the top left and top right
-        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-      }, 250);
     }
-  });
+  })();
 </script>
